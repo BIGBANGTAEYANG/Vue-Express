@@ -5,6 +5,8 @@ var bodyParser = require('body-parser');
 var mysql = require('mysql');
 var DBConfig = require('../public/javascripts/mysql/DBConfig');
 var UserSQL = require('../public/javascripts/mysql/UserSQL');
+var StockSQL = require('../public/javascripts/mysql/StockSQL');
+
 //使用DBConfig的配置信息创建一个MySQL连接池
 var pool = mysql.createPool(DBConfig.mysql);
 //响应JSON数据
@@ -47,6 +49,24 @@ router.post('/userlogin', function (req, res, next) {
     });
   });
 });
+
+
+//
+router.get('/getAllStock',function(req, res, next){
+  res.header("Access-Control-Allow-Origin", "*");
+
+  pool.getConnection(function (err, connection) {
+    connection.query(StockSQL.findAllStock, null, function (err, result) {
+      //以json的格式返回
+      responseJSON(res, result);
+      //释放连接
+      connection.release();
+    });
+  });
+
+});
+
+
 
 
 router.get('/getTableData', function (req, res, next) {
