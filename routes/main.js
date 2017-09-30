@@ -51,7 +51,7 @@ router.post('/userlogin', function (req, res, next) {
 });
 
 
-//
+//获取库存
 router.get('/getAllStock',function(req, res, next){
   res.header("Access-Control-Allow-Origin", "*");
 

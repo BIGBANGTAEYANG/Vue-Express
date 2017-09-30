@@ -1,4 +1,4 @@
 var StockSQL = {
-    findAllStock: 'SELECT * FROM stockinfo'
+    findAllStock: 'SELECT * FROM productinfo'
 };
 module.exports = StockSQL;
